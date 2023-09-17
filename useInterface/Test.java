@@ -1,10 +1,18 @@
 package useInterface;
 
-interface TestfotAll {
+interface TestfotAll {//khai báo method runmethod ở interface để  các class khác nhau kế thừa nó, Method này không triển khai phần body mà chỉ khai báo chung chung => tính trừu tượng
     void runMethod();
 }
-
-class Test1 implements TestfotAll {
+/*các class Test1 Test2 triển khai interface theo các cách khác nhau, và khi tạo đối tượng test1, test2 ta dùng
+   TestfotAll obj1 = new Test1(); //thay vì Test1 obj1 = new Test1()
+   TestfotAll obj2 = new Test2(); //thay vì Test2 obj2 = new Test2()
+   để tạo đối tượng, trong method callMethod ta không truyền cụ thể đối tượng nào mà truyền TestfotAll
+private static void callMethod(TestfotAll testforAll) {
+        testforAll.runMethod();
+    } làm cho code linh hoạt hơn
+=> thể hiện tính đa hình */
+   
+class Test1 implements TestfotAll { 
 
     @Override
     public void runMethod() {
@@ -32,8 +40,8 @@ public class Test {
 
     public static void main(String[] args) {
 
-        Test1 obj1 = new Test1();
-        Test2 obj2 = new Test2();
+        TestfotAll obj1 = new Test1();
+        TestfotAll obj2 = new Test2();
 
         // ở đây ta muốn truyền test1 hay test2 thì tùy vì cả 2 chúng đều triển khai từ
         // TestfotAll
